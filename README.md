@@ -51,3 +51,5 @@
  - [📁](./src/ois_isogram/) **[ois_isogram](https://training.olinfo.it/task/ois_isogram)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/ois_gallery/) **[ois_gallery](https://training.olinfo.it/task/ois_gallery)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
  - [📁](./src/oii_aemilia/) **[oii_aemilia](https://training.olinfo.it/task/oii_aemilia)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./src/ois_washington/) **[ois_washington](https://training.olinfo.it/task/ois_washington)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./src/ois_quadrilateral/) **[ois_quadrilateral](https://training.olinfo.it/task/ois_quadrilateral)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
