@@ -23,7 +23,7 @@
  - [📁](./src/ois_grades/) **[ois_grades](https://training.olinfo.it/task/ois_grades)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/collaz/) **[collaz](https://training.olinfo.it/task/collaz)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/ois_time/) **[ois_time](https://training.olinfo.it/task/ois_time)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
- - [📁](./src/ois_snacks/) **[ois_snacks](https://training.olinfo.it/task/ois_snacks)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./src/ois_snacks/) **[ois_snacks](https://training.olinfo.it/task/ois_snacks)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/itday_carte/) **[itday_carte](https://training.olinfo.it/task/itday_carte)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/ois_tickets/) **[ois_tickets](https://training.olinfo.it/task/ois_tickets)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/ois_muffin/) **[ois_muffin](https://training.olinfo.it/task/ois_muffin)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
