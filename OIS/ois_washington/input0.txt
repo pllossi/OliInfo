@@ -1,0 +1,6 @@
+5
+NE A 5 NE B 7
+NE G 15 SW P 0
+SE U 5 NW Q 10
+NW A 19 SW B 3
+SE Q 21 SW P 4

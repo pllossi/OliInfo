@@ -1,3 +1,8 @@
+/*
+ * Template competitivo per OIS
+ * Filippo Motta
+ */
+
 #include <bits/stdc++.h>
 using namespace std;
 
