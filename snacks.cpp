@@ -2,21 +2,17 @@
 
 using namespace std;
 
-ifstream fin("input.txt");
-ofstream fout("output.txt");
+
 
 int main()
 {
-    ifstream input("input.txt");
-    ofstream output("output.txt");
-
     int N, X;
-    input >> N >> X;
+    cin >> N >> X;
 
     vector<int> loudness(N);
 
     for (int i = 0; i < N; i++) {
-        input >> loudness[i];
+        cin >> loudness[i];
     }
 
     sort(loudness.begin(), loudness.end());
@@ -41,7 +37,7 @@ int main()
         time=time+1;
 
 
-    output << time;
+    cout << time <<endl;
 
 
     return 0;
