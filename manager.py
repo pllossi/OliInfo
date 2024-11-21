@@ -1,253 +1,223 @@
 import os
-import io
+import re
 import sys
 import pip
 import time
-import stat
+import base64
 import shutil
-import tarfile
-import datetime
-import subprocess
-import requests
-from requests.exceptions import RequestException
-from selenium.common.exceptions import WebDriverException
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from selenium.webdriver.chrome.options import Options as ChromeOptions
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-from bs4 import BeautifulSoup, Tag
 
-REQUIRED_LIBS: list[str] = ["bs4", "selenium", "requests", "webdriver_manager"]
-RED_COLOR: str = "rgb(248 113 113)" 
-ORANGE_COLOR: str = "rgb(251 146 60)"
-YELLOW_COLOR: str = "rgb(250 204 21)"
-LIME_COLOR: str = "rgb(163 230 53)"
-GREEN_COLOR: str = "rgb(74 222 128)"  # 100 Score
-
-def onerror(func, path: str, _) -> None:
-    if not os.access(path, os.W_OK):
-        # Change file permission
-        os.chmod(path, stat.S_IWUSR)
-        func(path)
-    else:
-        # If error is not due to permission issues, raise
-        raise Exception("Could not delete cloned directory.")
-
-def get_webdriver(browser: str = "chrome"):
-    """
-    Get WebDriver based on selected browser
-    
-    :param browser: 'chrome' or 'firefox'
-    :return: Configured WebDriver and options
-    """
-    try:
-        if browser == "chrome":
-            options = ChromeOptions()
-            options.add_argument('--headless')
-            options.add_argument('--no-sandbox')
-            options.add_argument('--disable-dev-shm-usage')
-            options.add_argument('--disable-gpu')
-            options.add_argument('--window-size=1920,1080')
-            options.add_argument('--disable-extensions')
-            options.add_argument('--proxy-server="direct://"')
-            options.add_argument('--proxy-bypass-list=*')
-            options.add_argument('--start-maximized')
-            
-            # More robust driver management
-            service = ChromeService(ChromeDriverManager().install())
-            driver = webdriver.Chrome(service=service, options=options)
-        
-        else:  # Default to Firefox
-            options = FirefoxOptions()
-            options.add_argument('--headless')
-            options.add_argument('--no-sandbox')
-            options.add_argument('--disable-dev-shm-usage')
-            options.add_argument('--disable-gpu')
-            options.add_argument('--window-size=1920,1080')
-            options.add_argument('--disable-extensions')
-            options.add_argument('--proxy-server="direct://"')
-            options.add_argument('--proxy-bypass-list=*')
-            options.add_argument('--start-maximized')
-            
-            # More robust driver management
-            service = FirefoxService(GeckoDriverManager().install())
-            driver = webdriver.Firefox(service=service, options=options)
-        
-        # Enhanced timeout settings
-        driver.set_page_load_timeout(300)  # 5 minutes timeout
-        driver.implicitly_wait(10)  # Wait up to 10 seconds for elements
-        
-        return driver
-    
-    except Exception as e:
-        print(f"Error setting up WebDriver: {e}")
-        raise
+TRAINING_TOKEN: str
+with open("bin/training_token", 'r') as f:
+        TRAINING_TOKEN = f.read()
 
 def getScoreColor(value: int) -> str:
-    if value in range(0, 24):
-        return RED_COLOR
-    elif value in range(25, 49):
-        return ORANGE_COLOR
-    elif value in range(50, 74):
-        return YELLOW_COLOR
-    elif value in range(75, 100):
-        return LIME_COLOR
-    elif value == 100:
-        return GREEN_COLOR   
+        if value in range(0, 24):
+                return "rgb(248 113 113)"
+        elif value in range(25, 49):
+                return "rgb(251 146 60)"
+        elif value in range(50, 69):
+                return "rgb(250 204 21)"
+        elif value in range(75, 99):
+                return "rgb(163 230 53)"
+        elif value == 100:
+                return "rgb(74 222 128)"   
+
+def findInReadme(name: str) -> tuple[str, int] | None:
+        with open("./README.md", "r", encoding="utf-8") as f:
+                lines: list[str] = f.readlines()
+        
+        for i, line in enumerate(lines):
+                if f"[{name}]" in line:
+                        return [line, i]
+
+        return None
 
 def updateReadme(name: str, value: int) -> None:
-    URL: str = f"https://training.olinfo.it/task/{name}"
-    string: str = f" - [📁](./src/{name}/) **[{name}]({URL})** <span style=\"white-space: pre; border-radius:.5rem; background-color:{getScoreColor(value)}; color:black\">  {value}  </span>\n"
-    
-    with open("./README.md", "r", encoding="utf-8") as f:
-        lines: list[str] = f.readlines()
-
-    found: bool = False
-    for i, line in enumerate(lines):
-        if f"[{name}]" in line:
-            lines[i] = string
-            found = True
-            break
-
-    if not found:
-        lines.append(string)
-
-    with open("./README.md", "w", encoding="utf-8") as f:
-        f.writelines(lines)
-
-def download(url: str, browser: str = "chrome") -> None:
-    NAME: str = url.split('/')[-1]
-    DIR_NAME: str = f"./OIS/{NAME}"
-
-    # Ensure src directory exists
-    os.makedirs("./OIS", exist_ok=True)
-
-    if (os.path.exists(DIR_NAME)):
-        raise Exception("Project directory already exists")
-
-    # Create and start working in project dir
-    os.makedirs(DIR_NAME, exist_ok=True)
-    os.chdir(DIR_NAME)
-
-    max_retries = 3
-    driver = None
-    try:
-        driver = get_webdriver(browser)
+        URL: str = f"https://training.olinfo.it/task/{name}"
+        string: str = f" - [📁](./src/{name}/) **[{name}]({URL})** <span style=\"white-space: pre; border-radius:.5rem; background-color:{getScoreColor(value)}; color:black\">  {value}  </span>\n"
         
-        # Get attachments page
-        driver.get(f"{url}/attachments")
-        time.sleep(3)  # Increased wait time
-        ATTACHMENTS_HTML_DATA: str = driver.page_source
-        
-        # Get PDF instructions
-        driver.get(url)
-        time.sleep(3)  # Increased wait time
-        HTML_DATA: str = driver.page_source
+        with open("./README.md", "r", encoding="utf-8") as f:
+                lines: list[str] = f.readlines()
 
-        # Get all download href in the page
-        soupAttachments = BeautifulSoup(ATTACHMENTS_HTML_DATA, "html.parser")
-        anchors: list[Tag] = [anchor for anchor in soupAttachments.find_all('a') if 'download' in anchor.attrs]
+        position: tuple[str, int] | None = findInReadme(name)
 
-        # Download all attachments with retry mechanism
-        for anchor in anchors:
-            ANCHOR_URL: str = anchor.get('href')
-            for attempt in range(max_retries):
-                try:
-                    response = requests.get(ANCHOR_URL, timeout=30)
-                    response.raise_for_status()
-                    
-                    with open(ANCHOR_URL.split('/')[-1], 'wb') as f:
+        # If name is already in README update it, if not add it
+        if position:
+                lines[position[1]] = string
+        else:
+                lines.append(string)
+
+        with open("./README.md", "w", encoding="utf-8") as f:
+                f.writelines(lines)
+
+def download(name: str) -> None:
+        # Create and move to project dir
+        DIR_NAME: str = f"./src/{name}"
+        os.mkdir(DIR_NAME)
+        os.chdir(DIR_NAME)
+
+        # Get task info from API
+        response: Response = requests.post("https://training.olinfo.it/api/task", json={
+                "action": "get", 
+                "name": name
+        })
+        response.raise_for_status()
+
+        # Get "attachments" and "statements" from response
+        json: dict = response.json()
+        attachments: list[list[str]] = json.get("attachments", [])
+        statements: dict[str, str] = json.get("statements", [])
+
+        # Download PDF instructions
+        instructions: tuple[str, str] = next(iter(statements.items()))
+        response = requests.get(f"https://training.olinfo.it/api/files/{instructions[1]}/{instructions[0]}")
+        response.raise_for_status()
+        with open("testo.pdf", 'wb') as f:
+                f.write(response.content)
+
+        # Download all attachments
+        for attachment in attachments:
+                # Fetch attachment
+                response: Response = requests.get(f"https://training.olinfo.it/api/files/{attachment[1]}/{attachment[0]}")
+                response.raise_for_status()
+
+                # Write attachment to file
+                with open(attachment[0], 'wb') as f:
                         f.write(response.content)
-                    break
-                except RequestException as e:
-                    if attempt == max_retries - 1:
-                        print(f"Error downloading attachment: {str(e)}")
-                        raise
-                    time.sleep(5)
 
         # If there are no source file create template
         if len([file for file in os.listdir(".") if file.endswith(".cpp")]) == 0:
-            with open(f"{NAME}.cpp", 'w', encoding="utf-8") as f, open("../../template.cpp", 'r', encoding="utf-8") as template:
-                f.write(f"// {url}\n\n")
-                f.write(template.read())
+                with open(f"{name}.cpp", 'w', encoding="utf-8") as f, open("../../bin/template.cpp", 'r', encoding="utf-8") as template:
+                        f.write(f"// https://training.olinfo.it/task/{name}\n\n")
+                        f.write(template.read())
 
-        # Get PDF link with retry mechanism
-        soupMain = BeautifulSoup(HTML_DATA, "html.parser")
-        objects: list[Tag] = [object for object in soupMain.find_all('object') if 'data' in object.attrs and "testo.pdf" in object.get('data')]
-        for object in objects:
-            PDF_URL: str = object.get('data')
-            for attempt in range(max_retries):
-                try:
-                    response = requests.get(PDF_URL, timeout=30)
-                    response.raise_for_status()
-                    
-                    with open("testo.pdf", 'wb') as f:
-                        f.write(response.content)
-                    break
-                except RequestException as e:
-                    if attempt == max_retries - 1:
-                        print(f"Error downloading PDF: {str(e)}")
-                        raise
-                    time.sleep(5)
-
-    except Exception as e:
-        print(f"Error in download process: {e}")
-        raise
-    finally:
-        if driver:
-            driver.quit()
-
-    os.chdir("../../")
-    # Add readme entry
-    updateReadme(NAME, 0)
+        os.chdir("../../")
+        with open("./README.md", 'a', encoding="utf-8") as f:
+                # Add readme entry
+                updateReadme(name, 0)
 
 def remove(name: str) -> None:
-    # Remove directory
-    shutil.rmtree(f"./OIS/{name}")
+        # Remove directory
+        shutil.rmtree(f"./src/{name}")
 
-    # Update Readme
-    with open("./README.md", "r", encoding="utf-8") as f:
-        lines: list[str] = f.readlines()
+        # Update Readme
+        with open("./README.md", "r", encoding="utf-8") as f:
+                lines: list[str] = f.readlines()
 
-    for i, line in enumerate(lines):
-        if f"[{name}]" in line:
-            lines.pop(i)
-            break
+        # Remove line containing the name
+        lines.remove(lines[[i for i, line in enumerate(lines) if f"[{name}]" in line][0]])
+        with open("./README.md", "w", encoding="utf-8") as f:
+                f.writelines(lines)
 
-    with open("./README.md", "w", encoding="utf-8") as f:
-        f.writelines(lines)
+def send(name: str, fileName: str) -> None:
+        DIR_NAME: str = f"./src/{name}"
+        ENCRYPTED_FILE_CONTENT: str
+
+        with open(f"{DIR_NAME}/{fileName}", "rb") as f:
+                ENCRYPTED_FILE_CONTENT = base64.b64encode(f.read()).decode("utf-8")
+
+        # Get task info from API
+        response: Response = requests.post("https://training.olinfo.it/api/task", json={
+                "action": "get", 
+                "name": name
+        })
+        response.raise_for_status()
+
+        # Get "submission_format" from response
+        json: dict = response.json()
+        submission_format: list[str] = json.get("submission_format", [])
+
+        # Send problem
+        response = requests.post("https://training.olinfo.it/api/submission", json={
+                "action": "new", 
+                "files": {
+                        submission_format[-1]: {
+                                "data": ENCRYPTED_FILE_CONTENT,
+                                "filename": "source.txt",
+                                "language": "C++17 / g++"
+                        }
+                }, 
+                "task_name": name
+        }, cookies={
+                "training_token": TRAINING_TOKEN
+        })
+        response.raise_for_status()
+        
+        # Get "id" from response
+        json = response.json()
+        id: int = json.get("id")
+        assert id, f"Error generating submission, json: {json}"
+
+        print(f"[DEBUG]  Submission ID: {id}\n")
+
+        # Wait for compilation and evaluation
+        score: int | float | None = None
+        while score is None:
+                response = requests.post("https://training.olinfo.it/api/submission", json={
+                        "action": "details",
+                        "id": str(id)
+                }, cookies={
+                        "training_token": TRAINING_TOKEN
+                })
+                response.raise_for_status()
+
+                # Check if score has been set
+                json = response.json()
+                score = json.get("score")
+
+                # Wait before sending request again
+                time.sleep(2)
+
+        # Force decimal removal
+        score = int(score)
+
+        # Print score in console.
+        print(f"Score: {score}.")
+        if json.get("compilation_outcome") != "ok":
+                print("Compilation Error!")
+                print('\t', str(json.get("compilation_stderr")).replace('\n', "\n\t"), '\n')
+
+        # Get entry in README
+        position: tuple[str, int] | None = findInReadme(ARGS[i+1])
+        assert position, "Problem not in README.md"
+
+        # Set score to the highest score, the present one or the previous one.
+        score = max(score, int(re.search(r"  ([0-9]+)  ", position[0]).group(1)))
+        with open("./README.md", 'a', encoding="utf-8") as f:
+                # Add readme entry
+                updateReadme(ARGS[i+1], score)
 
 if __name__ == "__main__":
-    # Install required libraries
-    for lib in REQUIRED_LIBS:
-        try:
-            __import__(lib)
-        except ImportError:
-            pip.main(["install", lib])
+        # Download all required libraries
+        for lib in [ "requests" ]:
+                try:
+                        __import__(lib)
+                except ImportError:
+                        pip.main(["install", lib])
 
-    ARGS: list[str] = sys.argv[1:]
+        import requests
+        from requests import Response
 
-    if len(ARGS) == 0:
-        print("manager.py flags:\n"
-              "\t--add <link> [browser]\n"
-              "\t--remove <name>\n"
-              "\t--set <name> <score>\n"
-              "Browsers: chrome (default), firefox\n"
-              )
+        ARGS: list[str] = sys.argv[1:]
 
-    i: int = 0
-    while i < len(ARGS):
-        match (ARGS[i]):
-            case "--add":
-                browser = "chrome" if len(ARGS) <= i+2 else ARGS[i+2]
-                download(ARGS[i+1], browser)
-                i+=3 if len(ARGS) > i+2 else 2
-            case "--remove":
-                remove(ARGS[i+1])
-                i+=2
-            case "--set":
-                updateReadme(ARGS[i+1], int(ARGS[i+2]))
-                i+=3
+        if len(ARGS) == 0:
+                print("manager.py flags:\n\t--add <name>\n\t--remove <name>\n\t--send <name> <file-name>\n\t--set <name> <score>\n")
+
+        i: int = 0
+        while i < len(ARGS):
+                match (ARGS[i]):
+                        case "--add":
+                                download(ARGS[i+1])
+                                i+=2
+                        case "--remove":
+                                remove(ARGS[i+1])
+                                i+=2
+                        case "--send":
+                                send(ARGS[i+1], ARGS[i+2])
+                                i+=3
+                        case "--set":
+                                updateReadme(ARGS[i+1], int(ARGS[i+2]))
+                                i+=3
+                        case _:
+                                i+=1
+                        
