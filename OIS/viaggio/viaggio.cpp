@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    int min;
+    int min = INT_MAX;
     int N,M;
     cin >> N >> M;
     vector<vector<pair<int,int>>> viaggi(N+1);
@@ -38,6 +38,7 @@ int main()
             }
         }
     }
-    cout << min << endl;
+    min = distanze[N];
+    cout << (min == INT_MAX ? -1 : min) << endl;
 
 }

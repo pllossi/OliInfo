@@ -1,30 +1,31 @@
-// NOTE: it is recommended to use this even if you don't understand the following code.
-
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-    // uncomment the two following lines if you want to read/write from files
-    // ifstream cin("input.txt");
-    // ofstream cout("output.txt");
-
     int T;
-    cin >> T;
-
-    vector<string> S(3), D(3);
     for (int i = 0; i < T; ++i) {
-        cin >> S[0] >> S[1] >> S[2];
-        cin >> D[0] >> D[1] >> D[2];
+        vector<string> S(3), D(3); 
+        for (int j = 0; j < 3; ++j) {
+            if (!(cin >> S[j])) {
+                cout << "Invalid input for source strings" << endl;
+                return 1;
+            }
+        }
+        
+        // Read destination strings
+        for (int j = 0; j < 3; ++j) {
+            if (!(cin >> D[j])) {
+                cout << "Invalid input for destination strings" << endl;
+                return 1;
+            }
+        }
 
         int L = 0;
-
-
-        // INSERT YOUR CODE HERE
-
+        for (int j = 0; j < 3; ++j) {
+            if (S[j] == D[j]) {
+                L++;
+            }
+        }
 
         cout << L << endl;
     }
