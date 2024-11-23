@@ -52,7 +52,7 @@ def updateReadme(name: str, value: int) -> None:
 
 def download(name: str) -> None:
         # Create and move to project dir
-        DIR_NAME: str = f"./src/{name}"
+        DIR_NAME: str = f"./OIS/{name}"
         os.mkdir(DIR_NAME)
         os.chdir(DIR_NAME)
 
