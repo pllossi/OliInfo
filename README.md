@@ -61,3 +61,4 @@
  - [📁](./src/viaggio/) **[viaggio](https://training.olinfo.it/task/viaggio)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
 
  - [📁](./src/ois_police5/) **[ois_police5](https://training.olinfo.it/task/ois_police5)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./src/ois_excursion2/) **[ois_excursion2](https://training.olinfo.it/task/ois_excursion2)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
