@@ -34,7 +34,7 @@ def findInReadme(name: str) -> tuple[str, int] | None:
 
 def updateReadme(name: str, value: int) -> None:
         URL: str = f"https://training.olinfo.it/task/{name}"
-        string: str = f" - [📁](./src/{name}/) **[{name}]({URL})** <span style=\"white-space: pre; border-radius:.5rem; background-color:{getScoreColor(value)}; color:black\">  {value}  </span>\n"
+        string: str = f" - [📁](./OIS/{name}/) **[{name}]({URL})** <span style=\"white-space: pre; border-radius:.5rem; background-color:{getScoreColor(value)}; color:black\">  {value}  </span>\n"
         
         with open("./README.md", "r", encoding="utf-8") as f:
                 lines: list[str] = f.readlines()
@@ -98,7 +98,7 @@ def download(name: str) -> None:
 
 def remove(name: str) -> None:
         # Remove directory
-        shutil.rmtree(f"./src/{name}")
+        shutil.rmtree(f"./OIS/{name}")
 
         # Update Readme
         with open("./README.md", "r", encoding="utf-8") as f:
@@ -110,7 +110,7 @@ def remove(name: str) -> None:
                 f.writelines(lines)
 
 def send(name: str, fileName: str) -> None:
-        DIR_NAME: str = f"./src/{name}"
+        DIR_NAME: str = f"./OIS/{name}"
         ENCRYPTED_FILE_CONTENT: str
 
         with open(f"{DIR_NAME}/{fileName}", "rb") as f:

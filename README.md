@@ -20,7 +20,7 @@
  - [📁](./src/ois_halloween/) **[ois_halloween](https://training.olinfo.it/task/ois_halloween)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/ois_candies/) **[ois_candies](https://training.olinfo.it/task/ois_candies)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/ois_ip/) **[ois_ip](https://training.olinfo.it/task/ois_ip)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  100  </span>
- - [📁](./src/ois_grades/) **[ois_grades](https://training.olinfo.it/task/ois_grades)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./OIS/ois_grades/) **[ois_grades](https://training.olinfo.it/task/ois_grades)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/collaz/) **[collaz](https://training.olinfo.it/task/collaz)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/ois_time/) **[ois_time](https://training.olinfo.it/task/ois_time)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/ois_snacks/) **[ois_snacks](https://training.olinfo.it/task/ois_snacks)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
@@ -48,7 +48,7 @@
  - [📁](./src/ois_dessert/) **[ois_dessert](https://training.olinfo.it/task/ois_dessert)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  100 </span>
  - [📁](./src/avgquery/) **[avgquery](https://training.olinfo.it/task/avgquery)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
  - [📁](./src/preoii_grandistazioni/) **[preoii_grandistazioni](https://training.olinfo.it/task/preoii_grandistazioni)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
- - [📁](./src/ois_isogram/) **[ois_isogram](https://training.olinfo.it/task/ois_isogram)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
+ - [📁](./OIS/ois_isogram/) **[ois_isogram](https://training.olinfo.it/task/ois_isogram)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./src/ois_gallery/) **[ois_gallery](https://training.olinfo.it/task/ois_gallery)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
  - [📁](./src/oii_aemilia/) **[oii_aemilia](https://training.olinfo.it/task/oii_aemilia)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
  - [📁](./src/ois_cars/) **[ois_cars](https://training.olinfo.it/task/ois_cars)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
@@ -62,3 +62,7 @@
 
  - [📁](./src/ois_police5/) **[ois_police5](https://training.olinfo.it/task/ois_police5)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
  - [📁](./src/ois_excursion2/) **[ois_excursion2](https://training.olinfo.it/task/ois_excursion2)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
+ - [📁](./OIS/ois_police/) **[ois_police](https://training.olinfo.it/task/ois_police)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
+ - [📁](./OIS/ois_police3/) **[ois_police3](https://training.olinfo.it/task/ois_police3)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
+ - [📁](./OIS/preoii_treni/) **[preoii_treni](https://training.olinfo.it/task/preoii_treni)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./OIS/ois_seti/) **[ois_seti](https://training.olinfo.it/task/ois_seti)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>

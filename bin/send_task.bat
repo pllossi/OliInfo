@@ -8,4 +8,4 @@ if /i "%~x2" NEQ ".cpp" (
 set "filename=%~nx2"
 set "dirname=%~n1"
 
-python "%~dp0..\manager.py" --send %dirname% %filename%
+python3 "%~dp0..\manager.py" --send %dirname% %filename%
