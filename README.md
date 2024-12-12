@@ -65,4 +65,7 @@
  - [📁](./OIS/ois_police/) **[ois_police](https://training.olinfo.it/task/ois_police)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./OIS/ois_police3/) **[ois_police3](https://training.olinfo.it/task/ois_police3)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./OIS/preoii_treni/) **[preoii_treni](https://training.olinfo.it/task/preoii_treni)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
- - [📁](./OIS/ois_seti/) **[ois_seti](https://training.olinfo.it/task/ois_seti)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./OIS/ois_seti/) **[ois_seti](https://training.olinfo.it/task/ois_seti)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
+ - [📁](./OIS/ois_progressiveart/) **[ois_progressiveart](https://training.olinfo.it/task/ois_progressiveart)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./OIS/ois_alienabc/) **[ois_alienabc](https://training.olinfo.it/task/ois_alienabc)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./OIS/ois_nonna/) **[ois_nonna](https://training.olinfo.it/task/ois_nonna)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>

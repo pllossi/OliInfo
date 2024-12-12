@@ -1,3 +1,6 @@
 {
-    "C_Cpp.default.compilerPath": "c:\\Program Files\\CodeBlocks\\MinGW\\bin\\g++.exe"
+    "C_Cpp.default.compilerPath": "c:\\Program Files\\CodeBlocks\\MinGW\\bin\\g++.exe",
+    "files.associations": {
+        "vector": "cpp"
+    }
 }

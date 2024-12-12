@@ -1,11 +1,18 @@
-#include <stdio.h>
-#include <assert.h>
+#include <bits/stdc++.h>
+#include <vector>
+
+using namespace std;
 
 #define MAXN 1000000
 
-int receive(int N, int V[]) {
-    // insert your code here
-    return 42;
+const int INF = 1e9+7;
+[[nodiscart]]int receive(vector<int> &memo ,int N, int V[],int pos) {
+    if(pos < 0) return 1;
+    if(memo[pos] != -1) return memo[pos];
+    int ans{};
+    ans += receive(memo,N,V,pos-1-V[pos]);
+    ans += receive(memo,N,V,pos-1);
+    return memo[pos] = ans%INF;
 }
 
 
@@ -20,8 +27,8 @@ int main() {
     assert(1 == fscanf(fr, "%d", &N));
     for(i=0; i<N; i++)
         assert(1 == fscanf(fr, "%d", &V[i]));
-
-    fprintf(fw, "%d\n", receive(N, V));
+    vector<int> memo(N,-1);
+    fprintf(fw, "%d\n", receive(memo,N, V, N-1));
     fclose(fr);
     fclose(fw);
     return 0;
