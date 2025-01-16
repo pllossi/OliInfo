@@ -70,3 +70,5 @@
  - [📁](./OIS/ois_alienabc/) **[ois_alienabc](https://training.olinfo.it/task/ois_alienabc)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./OIS/ois_nonna/) **[ois_nonna](https://training.olinfo.it/task/ois_nonna)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./OIS/ois_findperm/) **[ois_findperm](https://training.olinfo.it/task/ois_findperm)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./OIS/poldo/) **[poldo](https://training.olinfo.it/task/poldo)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
+ - [📁](./OIS/ois_rescaling/) **[ois_rescaling](https://training.olinfo.it/task/ois_rescaling)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
