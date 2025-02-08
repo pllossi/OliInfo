@@ -6,7 +6,7 @@ using namespace std;
 int N, M;
 vector<int> città;
 vector<int> dsu;
-//dsu per trovare le città isolate per poi collegarle con una stada
+
 int find(int a)
 {
         if(dsu[a] == a)
