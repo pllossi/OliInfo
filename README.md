@@ -74,3 +74,7 @@
  - [📁](./OIS/ois_rescaling/) **[ois_rescaling](https://training.olinfo.it/task/ois_rescaling)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
  - [📁](./OIS/mattoni/) **[mattoni](https://training.olinfo.it/task/mattoni)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./OIS/ois_mana/) **[ois_mana](https://training.olinfo.it/task/ois_mana)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./OIS/ois_ponti/) **[ois_ponti](https://training.olinfo.it/task/ois_ponti)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
+ - [📁](./OIS/ponti/) **[ponti](https://training.olinfo.it/task/ponti)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./OIS/ois_scrigni/) **[ois_scrigni](https://training.olinfo.it/task/ois_scrigni)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
+ - [📁](./OIS/ois_islands/) **[ois_islands](https://training.olinfo.it/task/ois_islands)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
