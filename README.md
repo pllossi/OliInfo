@@ -139,3 +139,4 @@
  - [📁](./OIS/ois_scrigni/) **[ois_scrigni](https://training.olinfo.it/task/ois_scrigni)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(74 222 128); color:black">  100  </span>
  - [📁](./OIS/ois_islands/) **[ois_islands](https://training.olinfo.it/task/ois_islands)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
  - [📁](./OIS/iiot_fence/) **[iiot_fence](https://training.olinfo.it/task/iiot_fence)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
+ - [📁](./OIS/mincammino2/) **[mincammino2](https://training.olinfo.it/task/mincammino2)** <span style="white-space: pre; border-radius:.5rem; background-color:rgb(248 113 113); color:black">  0  </span>
