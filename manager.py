@@ -5,6 +5,8 @@ import pip
 import time
 import base64
 import shutil
+import requests
+from requests import Response
 
 TRAINING_TOKEN: str
 with open("bin/training_token", 'r') as f:
@@ -195,9 +197,7 @@ if __name__ == "__main__":
                 except ImportError:
                         pip.main(["install", lib])
 
-        import requests
-        from requests import Response
-
+        
         ARGS: list[str] = sys.argv[1:]
 
         if len(ARGS) == 0:
